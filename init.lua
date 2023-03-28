@@ -18,7 +18,7 @@ local function set_contains(set, key)
 end
 
 local micky = function()
-    gears.timer.weak_start_new(0.05, function()
+    gears.timer.weak_start_new(0.01, function()
         local c = client.focus
         local cgeometry = c:geometry()
 
@@ -38,7 +38,7 @@ client.connect_signal("focus", function(c)
     local focused_client = c
     --+ client the focus is going towards
 
-    gears.timer.weak_start_new(0.15, function()
+    gears.timer.weak_start_new(0.01, function()
         local client_under_mouse = mouse.current_client
         local should_stay = set_contains(stay_classes, client_under_mouse.class)
 
