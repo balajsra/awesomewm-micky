@@ -11,6 +11,9 @@ local stay_classes = {
 --+ class names defined here would insist micky stays where
 --> he is at.
 
+local warp_wait_time = 0.01
+local focus_wait_time = 0.05
+
 -------------------------------------------------------------------> methods ;
 
 local function set_contains(set, key)
@@ -18,7 +21,7 @@ local function set_contains(set, key)
 end
 
 local micky = function()
-    gears.timer.weak_start_new(0.01, function()
+    gears.timer.weak_start_new(warp_wait_time, function()
         local c = client.focus
         local cgeometry = c:geometry()
 
@@ -38,7 +41,7 @@ client.connect_signal("focus", function(c)
     local focused_client = c
     --+ client the focus is going towards
 
-    gears.timer.weak_start_new(0.01, function()
+    gears.timer.weak_start_new(focus_wait_time, function()
         local client_under_mouse = mouse.current_client
         local should_stay = set_contains(stay_classes, client_under_mouse.class)
 
